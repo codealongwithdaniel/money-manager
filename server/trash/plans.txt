@@ -1,0 +1,5 @@
+Db -> needs two tables
+
+User - first name, lastname, email, mobile number etc
+
+Transaction - type (expense, income), date, memo, category(food, bills something like that)
