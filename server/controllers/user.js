@@ -1,5 +1,6 @@
 const UserModel = require('../models/User');
-
+const jwt = require('jsonwebtoken');
+const keys = require('../config/keys');
 const userController = {
 
     testFn: function(req, res){
@@ -35,9 +36,30 @@ const userController = {
                 })
             }
         })
+    },
+
+    signIn: function(req, res){
+        UserModel.checkUserExists(req.body.email, function(presentErr, isPresent){
+            if(isPresent){
+                UserModel.getUserByEmail(req.body.email, function(userErr, userRow){
+                    if(userErr){
+                        res.json({success: false, message: "Something went wrong"});
+                    }else{
+                        UserModel.comparePasswords(req.body.password, userRow.password, function(compareErr, compareResult){
+                            if(compareErr){
+                                res.json({success: false, message: "Something went wrong"});
+                            }else{
+                                const token = jwt.sign({user_id: userRow.id}, keys.jwtSecret, { expiresIn: '2d'});
+                                res.json({success: true, token: token, message: 'Sigin successfull'});
+                            }
+                        })
+                    }
+                })
+            }else{
+                res.json({success: false, message: "Something went wrong"});
+            }
+        })
     }
-
-
 }
 
 
