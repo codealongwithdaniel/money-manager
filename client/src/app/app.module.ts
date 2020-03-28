@@ -15,6 +15,7 @@ import { SettingsComponent } from './settings/settings.component';
 import { CategoriesComponent } from './categories/categories.component';
 import { AddTransactionComponent } from './add-transaction/add-transaction.component';
 import { AboutComponent } from './about/about.component';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { AboutComponent } from './about/about.component';
     SettingsComponent,
     CategoriesComponent,
     AddTransactionComponent,
-    AboutComponent
+    AboutComponent,
+    HomeComponent
   ],
   entryComponents: [],
   imports: [

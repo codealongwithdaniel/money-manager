@@ -1,0 +1,73 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Home</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Home</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <div id="container">
+    <ion-card>
+      <ion-card-content>
+        <ion-grid>
+          <ion-row class="text-center">
+            <ion-col class="font-bold">
+              Income
+            </ion-col>
+            <ion-col class="font-bold border-lr">
+              Expenses
+            </ion-col>
+            <ion-col class="font-bold">
+              Balance
+            </ion-col>
+          </ion-row>
+          <ion-row class="text-center">
+            <ion-col class="">
+              18000
+            </ion-col>
+            <ion-col class="">
+              4000
+            </ion-col>
+            <ion-col class="font-bold">
+              14000
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-card-content>
+    </ion-card>
+    <ion-card>
+      <ion-item>
+        <!-- <ion-icon name="pin" slot="start"></ion-icon> -->
+        <ion-label>03/28</ion-label>
+        <ion-label slot="end" class="text-right">Expenses: 500</ion-label>
+        <!-- <ion-button fill="outline">View</ion-button> -->
+      </ion-item>
+      <ion-card-content>
+        <ion-grid>
+          <ion-row>
+            <ion-col class="text-left">
+              <ion-icon name="pizza-outline"></ion-icon>
+              Food
+            </ion-col>
+            <ion-col class="text-right">
+              4000
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-card-content>
+    </ion-card>
+  </div>
+</ion-content>
+<ion-fab vertical="bottom" horizontal="end" slot="fixed">
+  <ion-fab-button color="danger">
+    <ion-icon name="add-outline"></ion-icon>
+  </ion-fab-button>
+</ion-fab>
