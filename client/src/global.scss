@@ -10,6 +10,7 @@
  */
 
 /* Core CSS required for Ionic components to work properly */
+
 @import "~@ionic/angular/css/core.css";
 
 /* Basic CSS for apps built with Ionic */
@@ -25,6 +26,15 @@
 @import "~@ionic/angular/css/text-transformation.css";
 @import "~@ionic/angular/css/flex-utils.css";
 
+
+.input-wrapper{
+    display: block !important;
+    text-align: center;
+}
+
+.pl-12{
+    padding-left: 12px;
+}
 .text-center{
     text-align: center;
 }
@@ -48,4 +58,35 @@
 
 .add-btn{
     background-color: #EF5350 !important;
+}
+
+.mt-11{
+    margin-top: 11px;
+}
+
+.dt-home{
+    text-align: center;
+    margin-top: 11px;
+}
+
+.hoverOrange:hover{
+    color: orange;
+}
+
+.selectIcon{
+    font-size: 24px;
+}
+
+.selectText{
+    white-space: nowrap;
+    overflow: hidden;
+    font-size: 12px;
+}
+
+.mt-20{
+    margin-top: 20px;
+}
+
+.mt-150{
+    margin-top: 150px;
 }

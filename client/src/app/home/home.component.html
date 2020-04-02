@@ -15,6 +15,7 @@
   </ion-header>
 
   <div id="container">
+    <ion-datetime class="text-center mt-11" displayFormat="YYYY:MMM" pickerFormat="YYYY:MM" [(ngModel)]="date" (ionChange)="valueChanged($event)"></ion-datetime>
     <ion-card>
       <ion-card-content>
         <ion-grid>
@@ -67,7 +68,7 @@
   </div>
 </ion-content>
 <ion-fab vertical="bottom" horizontal="end" slot="fixed">
-  <ion-fab-button color="danger">
+  <ion-fab-button color="danger" (click)="navigateToAddNew()">
     <ion-icon name="add-outline"></ion-icon>
   </ion-fab-button>
 </ion-fab>

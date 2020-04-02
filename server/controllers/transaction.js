@@ -1,5 +1,11 @@
 const TransactionModel = require('../models/Transaction');
 const { check, validationResult } = require('express-validator');
+const icons = require('../json/data');
+const _ = require('lodash');
+
+function returnIconNames(iconObj){
+    return iconObj.name;
+}
 
 const transactionController = {
     addTransaction: function(req, res){
@@ -54,6 +60,10 @@ const transactionController = {
         .catch((error)=>{
             res.json({success: false, message: 'Something went wrong'})
         })
+    },
+
+    getIcons: function(req, res){
+        res.send(_.map(icons, returnIconNames));
     }
 }
 

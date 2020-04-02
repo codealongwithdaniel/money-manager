@@ -10,5 +10,5 @@ router.post('/user/signin', userController.signIn);
 router.post('/transaction/add', transactionController.addTransaction);
 router.post('/transaction/update', transactionController.updateTransaction);
 router.post('/transaction/delete',transactionController.deleteTransaction);
-
+router.get('/icons/getIcons', transactionController.getIcons);
 module.exports = router;

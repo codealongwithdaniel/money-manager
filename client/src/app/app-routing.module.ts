@@ -6,16 +6,23 @@ import { FeedbackComponent } from './feedback/feedback.component';
 import { AboutComponent } from './about/about.component';
 import { ChartComponent } from './chart/chart.component';
 import { HomeComponent } from './home/home.component';
+import { AddTransactionComponent } from './add-transaction/add-transaction.component';
+import { RegisterComponent } from './register/register.component';
+import { LoginComponent } from './login/login.component';
 
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'screen/home',
+    redirectTo: 'screen/login',
     pathMatch: 'full'
   },
   {
     path: 'screen/home',
     component: HomeComponent
+  },
+  {
+    path: 'screen/add',
+    component: AddTransactionComponent
   },
   {
     path: 'screen/categories',
@@ -36,6 +43,14 @@ const routes: Routes = [
   {
     path: 'screen/about',
     component: AboutComponent
+  },
+  {
+    path: 'screen/login',
+    component: LoginComponent
+  },
+  {
+    path: 'screen/register',
+    component: RegisterComponent
   },
   {
     path: 'folder/:id',
