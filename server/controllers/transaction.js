@@ -18,7 +18,7 @@ const transactionController = {
                 category_id: req.body.category_id,
                 date: req.body.date,
                 price: req.body.price,
-                user_id: req.user_id
+                user_id: req.user.user_id
             }
             TransactionModel.addTransaction(data)
             .then((results)=>{
@@ -28,6 +28,21 @@ const transactionController = {
                 res.json({success: false, message: 'Something went wrong'})
             })
         }
+    },
+
+    getMonthWiseTransaction: function(req, res){
+        const dateObj = {
+            month: req.body.date.split('-')[1],
+            year: req.body.date.split('-')[0]
+        }
+        
+        TransactionModel.getAllTransactionWithDateAndUserId(dateObj, req.user.user_id)
+        .then((results)=>{
+            res.json({success: true, results: results});
+        })
+        .catch((error)=>{
+            res.json({success: false, message: 'Something went wrong'});
+        })
     },
 
     updateTransaction: function(req, res){

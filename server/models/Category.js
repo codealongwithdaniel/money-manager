@@ -1,6 +1,20 @@
 const connection  = require('../config/dbConfig');
 
 const categoryController = {
+    
+    getAllCategories: function(){
+        return new Promise((resolve, reject)=>{
+            connection.query('SELECT * FROM categories', function(err, rows){
+                if(err){
+                    console.log(err);
+                    reject(err);
+                }else{
+                    resolve(rows);
+                }
+            })
+        })
+    },
+
     addCategory: function(data){
         return new Promise((resolve, reject)=>{
             connection.query('INSERT INTO categories SET ?', data, function(err, rows){

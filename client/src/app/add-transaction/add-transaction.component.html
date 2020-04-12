@@ -17,41 +17,43 @@
   <div id="container">
     <!-- <strong class="capitalize">Category</strong>
     <p>Explore <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p> -->
-    <ion-item>
-      <ion-label>Type</ion-label>
-      <ion-select [interfaceOptions]="customPopoverOptions" [(ngModel)]="transactionType" interface="action-sheet"
-        placeholder="Select One" (ionChange)="valueChanged($event)">
-        <ion-select-option value="income">Income</ion-select-option>
-        <ion-select-option value="expense">Expense</ion-select-option>
-      </ion-select>
-    </ion-item>
-    <ion-item>
-      <ion-text>Category (Pick One)</ion-text>
-    </ion-item>
-    <ion-item>
-      <ion-grid>
-        <ion-row>
-          <ion-col *ngFor="let iconObj of iconArr" size="4" class="hoverOrange">
-            <div class="selectIcon text-center">
-              <ion-icon class="text-center" [name]="iconObj.iconName"></ion-icon>
-            </div>
-            <div class="text-center selectText">
-              {{iconObj.name}}
-            </div>
-          </ion-col>
-        </ion-row>
-      </ion-grid>
-    </ion-item>
-    <ion-item>
-      <ion-label>Date</ion-label>
-      <ion-datetime id="dynamicDisabled" displayFormat="MMM-DD-YYYY" value="1994-12-15"></ion-datetime>
-    </ion-item>
-    <ion-item>
-      <ion-label position="floating">Price</ion-label>
-      <ion-input type="number"></ion-input>
-    </ion-item>
-    <div class="text-center mt-20">
-      <ion-button color="primary" shape="round">Add</ion-button>
-    </div>
+    <form>
+      <ion-item>
+        <ion-label>Type</ion-label>
+        <ion-select [interfaceOptions]="customPopoverOptions" [(ngModel)]="transactionType" [ngModelOptions]="{standalone: true}" interface="action-sheet"
+          placeholder="Select One" (ionChange)="valueChanged($event)">
+          <ion-select-option value="income">Income</ion-select-option>
+          <ion-select-option value="expense">Expense</ion-select-option>
+        </ion-select>
+      </ion-item>
+      <ion-item>
+        <ion-text>Category (Pick One)</ion-text>
+      </ion-item>
+      <ion-item>
+        <ion-grid>
+          <ion-row>
+            <ion-col *ngFor="let iconObj of iconArr" size="4" class="hoverOrange" (click)="selectedIcon(iconObj)">
+              <div class="selectIcon text-center">
+                <ion-icon class="text-center" [name]="iconObj.icon_name"></ion-icon>
+              </div>
+              <div class="text-center selectText">
+                {{iconObj.name}}
+              </div>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-item>
+      <ion-item>
+        <ion-label>Date</ion-label>
+        <ion-datetime displayFormat="MMM-DD-YYYY" pickerFormat= "MMM-DD-YYYY" name="Date" [(ngModel)]="transactionDetails.date"></ion-datetime>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Price</ion-label>
+        <ion-input type="number" name="price" [(ngModel)]="transactionDetails.price"></ion-input>
+      </ion-item>
+      <div class="text-center mt-20">
+        <ion-button color="primary" shape="round" (click)="addTransaction()">Add</ion-button>
+      </div>
+    </form>
   </div>
 </ion-content>

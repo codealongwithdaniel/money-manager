@@ -65,6 +65,19 @@ const transactionController = {
                 }
             })
         })
+    },
+
+    getAllTransactionWithDateAndUserId: function(dateObj, userId){
+        return new Promise((resolve, reject)=>{
+            connection.query('SELECT * FROM transactions where user_id = ? AND MONTH(date) = ? AND YEAR(date) = ?', [userId, dateObj.month, dateObj.year], function(err, rows){
+                if(err){
+                    console.log(err);
+                    reject(err);
+                }else{
+                    resolve(rows);
+                }
+            })
+        })
     }
 
 }

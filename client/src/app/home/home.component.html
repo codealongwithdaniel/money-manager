@@ -8,6 +8,9 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
   <ion-header collapse="condense">
     <ion-toolbar>
       <ion-title size="large">Home</ion-title>
@@ -15,7 +18,7 @@
   </ion-header>
 
   <div id="container">
-    <ion-datetime class="text-center mt-11" displayFormat="YYYY:MMM" pickerFormat="YYYY:MM" [(ngModel)]="date" (ionChange)="valueChanged($event)"></ion-datetime>
+    <ion-datetime class="text-center mt-11" displayFormat="MMM" pickerFormat="YYYY:MMM" [(ngModel)]="date" (ionChange)="valueChanged($event)"></ion-datetime>
     <ion-card>
       <ion-card-content>
         <ion-grid>

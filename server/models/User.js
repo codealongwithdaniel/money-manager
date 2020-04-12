@@ -15,9 +15,9 @@ const userModel = {
             //  rows is an array 
             if(rows.length){
                 //  Rows will be more than zero
-                callback(true, err);
+                callback(err, true);
             }else{
-                callback(false, err);
+                callback(err, false);
             }
         })
     },
@@ -30,6 +30,7 @@ const userModel = {
 
     comparePasswords: function(password, hashedPassword, callback){
         bcrypt.compare(password, hashedPassword, function(err, res) {
+            console.log(err);
             // res is true if the both matches - password and hashed password
             callback(err, res);
         });
@@ -38,10 +39,12 @@ const userModel = {
     getUserByEmail: function(email, callback){
         connection.query('SELECT * FROM users where email = ?', email, function(err, rows){
             if(rows.length){
+                console.log(rows);
                 // rows is an array [0] - contains the user
 
                 callback(err, rows[0]);
             }else{
+                console.log(err);
                 callback(err, null);
             }
         })

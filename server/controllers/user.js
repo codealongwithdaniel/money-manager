@@ -22,7 +22,8 @@ const userController = {
                     }else{
                         let userData = {
                             email: req.body.email,
-                            password: hashedPassword
+                            password: hashedPassword,
+                            name: req.body.name
                         }
                         UserModel.addUser(userData, function(addUserErr, addUserData){
                             if(addUserErr){
@@ -39,6 +40,7 @@ const userController = {
     },
 
     signIn: function(req, res){
+        console.log('Got requ')
         UserModel.checkUserExists(req.body.email, function(presentErr, isPresent){
             if(isPresent){
                 UserModel.getUserByEmail(req.body.email, function(userErr, userRow){
@@ -46,6 +48,7 @@ const userController = {
                         res.json({success: false, message: "Something went wrong"});
                     }else{
                         UserModel.comparePasswords(req.body.password, userRow.password, function(compareErr, compareResult){
+                            console.log('Compare result',compareResult);
                             if(compareErr){
                                 res.json({success: false, message: "Something went wrong"});
                             }else{

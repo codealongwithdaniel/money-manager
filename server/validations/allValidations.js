@@ -1,7 +1,12 @@
 const { check, validationResult } = require('express-validator');
 
 module.exports = {
-    signInRegister:[
+    register:[
+        check('email').isEmail().withMessage('Enter a valid email'),
+        check('password').isLength({min: 5}).withMessage('Password should be more than 5 letters'),
+        check('name').isLength({min: 5}).withMessage('Password should be more than 5 letters')
+    ],
+    signIn:[
         check('email').isEmail().withMessage('Enter a valid email'),
         check('password').isLength({min: 5}).withMessage('Password should be more than 5 letters'),
     ],
