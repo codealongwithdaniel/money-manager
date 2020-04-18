@@ -35,6 +35,7 @@
     "cordova-plugin-x-toast": "^2.7.2",
     "cordova-sqlite-storage": "^5.0.0",
     "core-js": "^2.5.4",
+    "lodash": "^4.17.15",
     "moment": "^2.24.0",
     "ngx-toastr": "^12.0.1",
     "rxjs": "~6.5.1",

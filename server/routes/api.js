@@ -15,9 +15,11 @@ router.post('/transaction/add', auth,transactionController.addTransaction);
 router.post('/transaction/getAll', auth, transactionController.getMonthWiseTransaction);
 router.post('/transaction/update', auth,transactionController.updateTransaction);
 router.post('/transaction/delete',auth,transactionController.deleteTransaction);
+router.post('/transaction/getChartData', auth, transactionController.getChartData);
 router.get('/icons/getIcons', transactionController.getIcons);
 
 //  Category routes
 router.post('/category/dump', categoryController.dumpCategories);
+router.post('/category/add', auth,categoryController.addCategory);
 router.get('/category/getAll', categoryController.getAllCategories);
 module.exports = router;

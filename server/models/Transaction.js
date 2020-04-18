@@ -69,7 +69,20 @@ const transactionController = {
 
     getAllTransactionWithDateAndUserId: function(dateObj, userId){
         return new Promise((resolve, reject)=>{
-            connection.query('SELECT * FROM transactions where user_id = ? AND MONTH(date) = ? AND YEAR(date) = ?', [userId, dateObj.month, dateObj.year], function(err, rows){
+            connection.query("SELECT * FROM transactions INNER JOIN categories ON transactions.category_id = categories.id where transactions.user_id = ? AND MONTH(transactions.date) = ? AND YEAR(transactions.date) = ?", [userId, dateObj.month, dateObj.year], function(err, rows){
+                if(err){
+                    console.log(err);
+                    reject(err);
+                }else{
+                    resolve(rows);
+                }
+            })
+        })
+    },
+
+    chartData: function(transactionType, dateObj, userId){
+        return new Promise((resolve, reject)=>{
+            connection.query("SELECT *, sum(price) as total_price from transactions INNER JOIN categories where transactions.category_id = categories.id AND transactions.type = ? AND transactions.user_id = ? AND MONTH(transactions.date) = ? AND YEAR(transactions.date) = ? GROUP BY category_id", [transactionType, userId, dateObj.month, dateObj.year], function(err, rows){
                 if(err){
                     console.log(err);
                     reject(err);

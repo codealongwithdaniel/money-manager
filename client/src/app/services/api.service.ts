@@ -21,7 +21,15 @@ export class ApiService {
   }
 
   getAllCategories(){
-    return this.http.get(this.hostService.getHost()+'category/getAll');
+    return new Promise((resolve, reject)=>{
+      this.storage.get('token')
+      .then((val) => {
+        let httpOptions = new HttpHeaders({
+          'Authorization': `Bearer ${val}`
+        });
+        resolve(this.http.get(this.hostService.getHost()+'category/getAll', {headers: httpOptions}));
+      });
+    })
   }
 
   addTransaction(data){
@@ -46,6 +54,30 @@ export class ApiService {
           'Authorization': `Bearer ${val}`
         });
         resolve(this.http.post(this.hostService.getHost()+'transaction/getAll', data, {headers: httpOptions}));
+      });
+    })
+  }
+
+  getChartData(data){
+    return new Promise((resolve, reject)=>{
+      this.storage.get('token')
+      .then((val) => {
+        let httpOptions = new HttpHeaders({
+          'Authorization': `Bearer ${val}`
+        });
+        resolve(this.http.post(this.hostService.getHost()+'transaction/getChartData', data, {headers: httpOptions}));
+      });
+    })
+  }
+
+  addCategory(data){
+    return new Promise((resolve, reject)=>{
+      this.storage.get('token')
+      .then((val) => {
+        let httpOptions = new HttpHeaders({
+          'Authorization': `Bearer ${val}`
+        });
+        resolve(this.http.post(this.hostService.getHost()+'category/add', data, {headers: httpOptions}));
       });
     })
   }

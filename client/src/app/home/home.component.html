@@ -47,27 +47,30 @@
         </ion-grid>
       </ion-card-content>
     </ion-card>
-    <ion-card>
-      <ion-item>
-        <!-- <ion-icon name="pin" slot="start"></ion-icon> -->
-        <ion-label>03/28</ion-label>
-        <ion-label slot="end" class="text-right">Expenses: 500</ion-label>
-        <!-- <ion-button fill="outline">View</ion-button> -->
-      </ion-item>
-      <ion-card-content>
-        <ion-grid>
-          <ion-row>
-            <ion-col class="text-left">
-              <ion-icon name="pizza-outline"></ion-icon>
-              Food
-            </ion-col>
-            <ion-col class="text-right">
-              4000
-            </ion-col>
-          </ion-row>
-        </ion-grid>
-      </ion-card-content>
-    </ion-card>
+    <ng-container *ngFor="let record of allRecords">
+      <ion-card>
+        <ion-item>
+          <!-- <ion-icon name="pin" slot="start"></ion-icon> -->
+          <ion-label>{{record.date | date: 'MMM d'}}</ion-label>
+          <ion-label slot="end" class="text-right">{{record.type | titlecase}}</ion-label>
+          <!-- <ion-button fill="outline">View</ion-button> -->
+        </ion-item>
+        <ion-card-content>
+          <ion-grid>
+            <ion-row>
+              <ion-col class="text-left">
+                <ion-icon [name]="record.icon_name"></ion-icon>
+                {{record.name}}
+              </ion-col>
+              <ion-col class="text-right">
+                {{record.price}}
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </ion-card-content>
+      </ion-card>
+    </ng-container>
+    
   </div>
 </ion-content>
 <ion-fab vertical="bottom" horizontal="end" slot="fixed">

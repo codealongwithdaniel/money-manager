@@ -56,6 +56,7 @@ export class HomeComponent implements OnInit {
       });
     })
   }
+  
   getAllTransactions(){
       const data = {
         date: this.date

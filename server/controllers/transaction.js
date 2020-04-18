@@ -7,6 +7,17 @@ function returnIconNames(iconObj){
     return iconObj.name;
 }
 
+function getRandomRgb(el) {
+    var num = Math.round(0xffffff * Math.random());
+    var r = num >> 16;
+    var g = num >> 8 & 255;
+    var b = num & 255;
+    // return 'rgb(' + r + ', ' + g + ', ' + b + ')';
+    el.colorCode = 'rgb(' + r + ', ' + g + ', ' + b + ')';
+    el.colorAlpha = 'rgb(' + r + ', ' + g + ', ' + b + ', 0.2)';
+    return el
+}
+
 const transactionController = {
     addTransaction: function(req, res){
         const errors = validationResult(req);
@@ -40,6 +51,7 @@ const transactionController = {
         .then((results)=>{
             res.json({success: true, results: results});
         })
+        
         .catch((error)=>{
             res.json({success: false, message: 'Something went wrong'});
         })
@@ -79,6 +91,28 @@ const transactionController = {
 
     getIcons: function(req, res){
         res.send(_.map(icons, returnIconNames));
+    },
+
+    getChartData: function(req, res){
+        const dateObj = {
+            month: req.body.date.split('-')[1],
+            year: req.body.date.split('-')[0]
+        }
+        TransactionModel.chartData('expense', dateObj, req.user.user_id)
+        .then((expenseGrouped)=>{
+            TransactionModel.chartData('income', dateObj, req.user.user_id)
+            .then((incomeGrouped)=>{
+                res.json({success: true, results: {expenseChart: _.flatMap(expenseGrouped, getRandomRgb), incomeChart: _.flatMap(incomeGrouped, getRandomRgb)}});
+            })
+            .catch((err)=>{
+                console.log(err);
+                res.json({success: false, message: 'Something went wrong'})
+            })
+        })
+        .catch((err)=>{
+            console.log(err);
+            res.json({success: false, message: 'Something went wrong'});
+        })
     }
 }
 

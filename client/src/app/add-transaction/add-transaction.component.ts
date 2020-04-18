@@ -36,12 +36,30 @@ export class AddTransactionComponent implements OnInit {
 
   getAllCategories(){
     this.apiService.getAllCategories()
-    .subscribe((results: any)=>{
-      if(results.success){
-        this.incomeIconArr = results.results.income;
-        this.expenseIconArr = results.results.expense;
-        this.iconArr = this.expenseIconArr;
-      }
+      .then((observable: any)=>{
+        observable.subscribe(async (results: any)=>{
+          // console.log(results);
+          if(results.success){
+            // const toast = await this.toastCtrl.create({
+            //   position: 'top',
+            //   message: 'Category added',
+            //   duration: 2000,
+            //   color: 'success'
+            // });
+            // toast.present();
+            this.incomeIconArr = results.results.income;
+            this.expenseIconArr = results.results.expense;
+            this.iconArr = this.expenseIconArr;
+          }else{
+            const toast = await this.toastCtrl.create({
+              position: 'top',
+              message: 'Something went wrong',
+              duration: 2000,
+              color: 'danger'
+            });
+            toast.present();
+          }
+        });
     })
   }
   
