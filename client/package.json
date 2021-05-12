@@ -29,7 +29,7 @@
     "@ionic-native/toast": "^5.23.0",
     "@ionic/angular": "^5.0.0",
     "@ionic/storage": "^2.2.0",
-    "chart.js": "^2.9.3",
+    "chart.js": "^2.9.4",
     "cordova-android": "8.1.0",
     "cordova-plugin-navigationbar": "^1.0.31",
     "cordova-plugin-x-toast": "^2.7.2",
